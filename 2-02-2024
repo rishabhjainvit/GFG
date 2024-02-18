@@ -1,0 +1,28 @@
+
+class Solution{
+  public:
+    
+    int atoi(string s) {
+        int first = s[0];
+        bool neg = false;
+        int x =0;
+        if(first == 45){
+            neg =true;
+            x =1;
+        }
+        int output = 0;
+        for(int i=x ; i<s.size();i++){
+            int check =s[i];
+            if(s[i]>=58 || s[i]<=47){
+                return -1;
+            }
+            else{
+                output =output*10+s[i]-48;
+            }
+        }
+        if(neg){
+            output=output*-1;
+        }
+        return output;
+    }
+};

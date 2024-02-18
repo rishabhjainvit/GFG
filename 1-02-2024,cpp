@@ -1,0 +1,28 @@
+
+class Solution
+{
+  public:
+    
+    bool checkPangram (string s) {
+        unordered_map<int,bool> mp(26);
+        
+        for(int i = 1; i <= 26; ++i ){
+            mp[i] = false;
+        }
+        for(char &c :s){
+            c=tolower(c);
+        }
+        
+        for(char c : s){
+            mp[c-96] = true;
+        }
+        for(int i= 1 ; i<27 ; i++){
+            if(!mp[i]){
+                return false;
+            }
+        }
+        return true;
+        
+    }
+
+};
