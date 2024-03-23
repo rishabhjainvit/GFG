@@ -1,0 +1,21 @@
+class Solution{
+public:
+    stack<int> insertAtBottom(stack<int> st, int x){
+        // Base case: if the stack is empty, push the element
+        if (st.empty()) {
+            st.push(x);
+            return st;
+        }
+        
+        // Remove the top element from the stack and recursively insert x
+        // at the bottom
+        int topElement = st.top();
+        st.pop();
+        st = insertAtBottom(st, x);
+        
+        // Push the removed top element back onto the stack
+        st.push(topElement);
+        
+        return st;
+    }
+};
