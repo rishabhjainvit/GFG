@@ -1,0 +1,27 @@
+class Solution {
+public: 
+    vector<string> NBitBinary(int n) {
+        vector<string> result;
+        generateNBitBinary("", n, 0, 0, result);
+        return result;
+    }
+
+private:
+    void generateNBitBinary(string current, int n, int ones, int zeros, vector<string>& result) {
+        // Base case: when the length of the string is equal to n
+        if (current.length() == n) {
+            result.push_back(current);
+            return;
+        }
+        
+        // Add '1' if the number of ones is less than n
+        if (ones < n) {
+            generateNBitBinary(current + '1', n, ones + 1, zeros, result);
+        }
+        
+        // Add '0' only if the number of zeros is less than the number of ones
+        if (zeros < ones) {
+            generateNBitBinary(current + '0', n, ones, zeros + 1, result);
+        }
+    }
+};
