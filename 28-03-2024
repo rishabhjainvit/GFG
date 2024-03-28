@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int findCity(int n, int m, vector<vector<int>>& edges, int distanceThreshold) {
+        // Constructing adjacency matrix
+        vector<vector<int>> distance(n, vector<int>(n, INT_MAX / 2));
+        for (auto& edge : edges) {
+            int from = edge[0];
+            int to = edge[1];
+            int weight = edge[2];
+            distance[from][to] = weight;
+            distance[to][from] = weight; // Considering bidirectional edges
+        }
+        
+        // Applying Floyd Warshall Algorithm to find shortest distances
+        for (int k = 0; k < n; ++k) {
+            for (int i = 0; i < n; ++i) {
+                for (int j = 0; j < n; ++j) {
+                    distance[i][j] = min(distance[i][j], distance[i][k] + distance[k][j]);
+                }
+            }
+        }
+        
+        int minCities = INT_MAX;
+        int city = -1;
+        
+        // Finding the city with the smallest number of reachable cities within the threshold distance
+        for (int i = 0; i < n; ++i) {
+            int reachableCities = 0;
+            for (int j = 0; j < n; ++j) {
+                if (i != j && distance[i][j] <= distanceThreshold)
+                    ++reachableCities;
+            }
+            if (reachableCities <= minCities) {
+                minCities = reachableCities;
+                city = i;
+            }
+        }
+        
+        return city;
+    }
+};
