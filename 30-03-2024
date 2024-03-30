@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int minValue(Node* root) {
+        // Base case: If the tree is empty, return INT_MAX
+        if (root == nullptr)
+            return INT_MAX;
+        
+        // Traverse to the leftmost node which will have the minimum value
+        while (root->left != nullptr)
+            root = root->left;
+        
+        // Return the value of the leftmost node
+        return root->data;
+    }
+};
