@@ -1,0 +1,21 @@
+class Solution {
+  public:
+  int val=-1;
+    int findMaxForN(Node* root, int n) {
+        if(root==NULL)
+        return val;
+        
+        if(root->key==n){
+            return root->key;
+            
+        }else if(root->key <n){
+            if(root->key >val)
+            val=root->key;
+           return  findMaxForN(root->right,n);
+        }else{
+           
+           return  findMaxForN(root->left,n);
+            
+        }
+    }
+};
