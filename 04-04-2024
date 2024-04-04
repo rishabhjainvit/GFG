@@ -1,0 +1,30 @@
+class Solution {
+public:
+    // Function to find sum of all possible substrings of the given string.
+    long long sumSubstrings(string s) {
+        const int MOD = 1e9 + 7;
+        int n = s.length();
+
+        // Initialize result to store the sum.
+        long long result = 0;
+
+        // Initialize two variables to keep track of current digit and its position.
+        long long currentNumber = 0;
+        long long currentPosition = 1;
+
+        // Traverse the string from right to left.
+        for (int i = n - 1; i >= 0; i--) {
+            // Update current number by adding the current digit multiplied by its position.
+            currentNumber = (currentNumber + (s[i] - '0') * currentPosition) % MOD;
+
+            // Add current number to the result.
+            result = (result + currentNumber) % MOD;
+
+            // Update current position.
+            currentPosition = (currentPosition * 10 + 1) % MOD;
+        }
+
+        // Return the result.
+        return result;
+    }
+};
