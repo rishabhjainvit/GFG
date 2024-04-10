@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int findSingle(int n, int arr[]) {
+        int single_person = 0;
+        
+        for (int i = 0; i < n; ++i) {
+            single_person ^= arr[i];
+        }
+        
+        return single_person;
+    }
+};
