@@ -1,0 +1,28 @@
+class Solution {
+public:
+    long long reversedBits(long long x) {
+        if(x == 0) return 0;
+        
+        // Initialize two pointers i and j to iterate from the least significant bit (LSB) to the most significant bit (MSB)
+        int i = 0; // Pointer i starts from LSB
+        int j = 31; // Pointer j starts from MSB
+        
+        // Initialize the variable to store the reversed bits
+        long long rev = 0;
+        
+        while(i <= j) {
+            // If the bit at position i in the input x is set (1), set the corresponding bit at position j in the result rev
+            if(x & (1ULL << i)) {
+                rev |= (1ULL << j);
+            }
+            // If the bit at position j in the input x is set (1), set the corresponding bit at position i in the result rev
+            if(x & (1ULL << j)) {
+                rev |= (1ULL << i);
+            }
+            // Move the pointers
+            i++;
+            j--;
+        }
+        return rev;
+    }
+};
