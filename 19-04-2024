@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> findMissing(int a[], int b[], int n, int m) {
+        vector<int> ans; // Vector to store missing elements
+        map<int, int> mp; // Map to store frequency of elements in array b
+
+        // Count frequencies of elements in array b
+        for (int i = 0; i < m; i++)
+            mp[b[i]]++;
+
+        // Check for missing elements from array a in array b
+        for (int i = 0; i < n; i++) {
+            // If element from array a not found in array b, add to ans
+            if (mp.find(a[i]) == mp.end())
+                ans.push_back(a[i]);
+        }
+        return ans; // Return vector of missing elements
+    }
+};
