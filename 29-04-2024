@@ -1,0 +1,14 @@
+class Solution {
+    public:
+    Node* deleteK(Node *head,int K){
+        Node *t = head, *prev;
+        if(K==1) return NULL;
+        for(int i = 1; t != NULL; i++, t = t->next){
+            if(i%K == 0){
+                prev->next = t->next;
+            } 
+            prev = t;
+        }
+        return head;
+    }
+};
